@@ -17,25 +17,21 @@
     <script src="jukebox.js"></script>
   </head>
   <body>
-    <h1>JukeBox</h1>
+    <div class="container-fluid">
+      <h1>JukeBox</h1>
 
-    <h2>Song Queue</h2>
-    <ul id="song-queue">
-      
+      <h2>Song Queue</h2>
+      <ul id="song-queue"></ul>
+      <hr/>
 
+      <form id='song-form'>
+        <input type="text" placeholder="Enter a song..."/>
+        <input type="submit" value="Enqueue Song">
+      </form>
+      <hr/>
 
-    </ul>
-    <hr/>
-
-    <form id='song-form'>
-      <input type="text" placeholder="Enter a song..."/>
-      <input type="submit" value="Enqueue Song">
-    </form>
-
-    <hr/>
-
-    <button id="play-button">Play</button>
-
+      <button id="play-button" class="button btn btn-primary">Play</button>
+    </div>
   </body>
 
 </html>
