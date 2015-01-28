@@ -20,13 +20,15 @@ var changeDisplay = function() {
 	$('#play-button').slideDown();
 	$('#play-button').attr('disabled', false);
 	$('#play-button').html("Play");
+	$('#user-msg').html("Enter a song to play");
 };
 
 var playFirstSong = function() {
 	var song = $('ul li:first-child').text()
 	if ( song != "" ) {
 		song = song.split(":");
-		//change the PLAY button appearance
+		//change the user-msg & PLAY button appearance
+		$('#user-msg').html("Now playing: "+song[0]);
 		$('#play-button').attr('disabled', true);
 		$('#play-button').html("Playing...");
 		$('#play-button').slideUp();
