@@ -19,10 +19,8 @@
   <body>
     <div class="container-fluid">
       <h1>JukeBox</h1>
-
       <h2>Song Queue</h2>
       <ul id="song-queue" class="list-group"></ul>
-      <hr/>
 
       <form id='song-form'>
         <div class="form-group">
@@ -32,11 +30,10 @@
         <div class="form-group"> 
           <label for="song_music">Song music: </label>
           <input id="song_music" type="text" placeholder="Enter a song..." class="form-control" />
+          <input type="submit" value="Enqueue Song">
         </div>
-        <input type="submit" value="Enqueue Song">
       </form>
-      <hr/>
-
+      
       <button id="play-button" class="button btn btn-primary">Play</button>
     </div>
   </body>

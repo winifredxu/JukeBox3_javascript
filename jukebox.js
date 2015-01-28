@@ -2,10 +2,13 @@ $(document).ready( function() {
 //$('h1').text("CHANGE");
 
 	$('input[type="submit"]').on('click', function() {
-		var song_name = $('input[type="text"]').val();
-		$('#song-queue').append('<li class="list-group-item">'+song_name+'</li>');
+		var song_name = $('#song_name').val();
+		var song_music = $('#song_music').val();
+
+		$('#song-queue').append('<li class="list-group-item">'+song_name+": "+song_music+'</li>');
 		event.preventDefault();
-		$('input[type="text"').val('');
+		$('#song_name').val("");
+		$('#song_music').val("");
 	});
 
 	$('#play-button').on('click', playFirstSong );
@@ -20,14 +23,15 @@ var changeDisplay = function() {
 };
 
 var playFirstSong = function() {
-	$('#play-button').slideUp();
-	var song = $('ul li:first-child').text();
+	var song = $('ul li:first-child').text()
 	if ( song != "" ) {
+		song = song.split(":");
 		//change the PLAY button appearance
 		$('#play-button').attr('disabled', true);
 		$('#play-button').html("Playing...");
+		$('#play-button').slideUp();
 //		playSong(parseSong(song), 400, changeDisplay );
-		playSong(parseSong(song), 400, playFirstSong );
+		playSong(parseSong(song[1]), 400, playFirstSong );
 		changeDisplay();
 	};
 };
