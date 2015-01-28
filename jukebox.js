@@ -5,10 +5,16 @@ $(document).ready( function() {
 		var song_name = $('#song_name').val();
 		var song_music = $('#song_music').val();
 
-		$('#song-queue').append('<li class="list-group-item">'+song_name+": "+song_music+'</li>');
+		$('#song-queue').append('<li class="list-group-item">'+song_name+': '+song_music+'</li>');
 		event.preventDefault();
 		$('#song_name').val("");
 		$('#song_music').val("");
+
+		//fadeIn song_music on mouseenter
+/*		$('li').on('mouseenter', function() {
+			$(this).append(": "+song_music);
+		});
+*/
 	});
 
 	$('#play-button').on('click', playFirstSong );
@@ -16,7 +22,6 @@ $(document).ready( function() {
 });
 
 var changeDisplay = function() {
-	$('li:first-child').remove(); //remove the song from list queue
 	$('#play-button').slideDown();
 	$('#play-button').attr('disabled', false);
 	$('#play-button').html("Play");
@@ -24,7 +29,7 @@ var changeDisplay = function() {
 };
 
 var playFirstSong = function() {
-	var song = $('ul li:first-child').text()
+	var song = $('ul li:first-child').text();
 	if ( song != "" ) {
 		song = song.split(":");
 		//change the user-msg & PLAY button appearance
@@ -34,6 +39,9 @@ var playFirstSong = function() {
 		$('#play-button').slideUp();
 //		playSong(parseSong(song), 400, changeDisplay );
 		playSong(parseSong(song[1]), 400, playFirstSong );
+		$('li:first-child').remove(); //remove the song from list queue
+
+	} else {
 		changeDisplay();
 	};
 };
