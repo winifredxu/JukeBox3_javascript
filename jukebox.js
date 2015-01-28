@@ -14,13 +14,13 @@ $(document).ready( function() {
 
 var changeDisplay = function() {
 	$('li:first-child').remove(); //remove the song from list queue
-//	$('#play-button').slideDown();
+	$('#play-button').slideDown();
 	$('#play-button').attr('disabled', false);
 	$('#play-button').html("Play");
 };
 
 var playFirstSong = function() {
-//	$('#play-button').slideUp();
+	$('#play-button').slideUp();
 	var song = $('ul li:first-child').text();
 	if ( song != "" ) {
 		//change the PLAY button appearance
