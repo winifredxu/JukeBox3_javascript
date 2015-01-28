@@ -1,21 +1,32 @@
 $(document).ready( function() {
-//$('h1').text("CHANGE");
+$('h1').text("CHANGE");
 
 	$('input[type="submit"]').on('click', function() {
-		var song_name = $('#song_name').val();
-		var song_music = $('#song_music').val();
+		var sg_name = $('#song_name').val();
+		var sg_music = $('#song_music').val();
+		var myLi = document.createElement("LI");
 
-		$('#song-queue').append('<li class="list-group-item">'+song_name+': '+song_music+'</li>');
+		$('#song-queue').append(myLi);
+		$(myLi).addClass('list-group-item');
+		$(myLi).append('<span>'+sg_name+'</span> <span>'+sg_music+'</span>');
+
+		// hide the last <span> of every song
+		//$('ul li span:last-child').hide();
+		$(myLi).children().last().hide();
+
 		event.preventDefault();
 		$('#song_name').val("");
 		$('#song_music').val("");
 
-		//fadeIn song_music on mouseenter
-/*		$('li').on('mouseenter', function() {
-			$(this).append(": "+song_music);
+		//fadeIn/Out song_music on mouse moves
+		$(myLi).on('mouseenter', function() {
+			$(myLi).children().last().show();
 		});
-*/
+		$(myLi).on('mouseleave', function() {
+			$(myLi).children().last().hide();
+		});
 	});
+
 
 	$('#play-button').on('click', playFirstSong );
 
@@ -29,16 +40,17 @@ var changeDisplay = function() {
 };
 
 var playFirstSong = function() {
-	var song = $('ul li:first-child').text();
-	if ( song != "" ) {
-		song = song.split(":");
+	var tmpLi = $('ul li:first-child');
+	if ( tmpLi.text() != "" ) {
+		var sg_name = tmpLi.children().first().text();
+		var sg_music = tmpLi.children().last().text();
 		//change the user-msg & PLAY button appearance
-		$('#user-msg').html("Now playing: "+song[0]);
+		$('#user-msg').html("Now playing: "+sg_name);
 		$('#play-button').attr('disabled', true);
 		$('#play-button').html("Playing...");
 		$('#play-button').slideUp();
 //		playSong(parseSong(song), 400, changeDisplay );
-		playSong(parseSong(song[1]), 400, playFirstSong );
+		playSong(parseSong(sg_music), 400, playFirstSong );
 		$('li:first-child').remove(); //remove the song from list queue
 
 	} else {
