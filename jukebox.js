@@ -4,7 +4,7 @@ $(document).ready( function() {
 
 	$('input[type="submit"]').on('click', function() {
 		var song_name = $('input[type="text"]').val();
-		$('#song-queue').append('<li>'+song_name+'</li>');
+		$('#song-queue').append('<li class="list-group-item">'+song_name+'</li>');
 		event.preventDefault();
 		$('input[type="text"').val('');
 	});
