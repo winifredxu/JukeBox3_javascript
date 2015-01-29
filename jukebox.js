@@ -1,5 +1,5 @@
 $(document).ready( function() {
-$('h1').text("CHANGE");
+//$('h1').text("CHANGE");
 
 	$('input[type="submit"]').on('click', function() {
 		var sg_name = $('#song_name').val();
@@ -57,7 +57,7 @@ var playFirstSong = function() {
 		$('#play-button').attr('disabled', true);
 		$('#play-button').html("Playing...");
 		$('#play-button').slideUp();
-//		playSong(parseSong(song), 400, changeDisplay );
+
 		playSong(parseSong(sg_music), 400, playFirstSong );
 		$('li:first-child').remove(); //remove the song from list queue
 
